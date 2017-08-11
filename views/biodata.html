@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  span {
+	font-size: 200%
+  }
+  
+  </style>
+</head>
+<body>
+
+<div class="container">
+</br>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">HOME</a></li>
+    <li><a data-toggle="tab" href="#menu1">MEDICAL HISTORY</a></li>
+    <li><a data-toggle="tab" href="#menu2">ADD NEW REPORT</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h2>BIODATA</h2>
+	  </br>
+	  </br>
+      <span>Patient id: </span> <span id=""></span>
+	  </br>
+	  <span>Weight: </span> <span id=""></span>
+	  </br>
+	  <span>Height: </span> <span id=""></span>
+	  </br>
+	  <span>BMI: </span> <span id=""></span>
+	  </br>
+	  <span>Blood Pressure: </span> <span id=""></span>
+	  </br>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>MEDICAL HISTORY</h3>
+	  </br>
+      <div class="col-sm-4">
+	  <label for="course" class="control-label" style="font-size: 14px;">Search</label>
+							  <select name="search" class="form-control" id="sel1">
+							    <option value="0">Choose...</option>
+							    <option value="1">By Disease</option>
+							    <option value="2">By Year</option>
+
+							  </select>
+	  
+    </div>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Add a new Report</h3>
+	  </br>
+	  
+	  	<form action="/action_page">
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Patient ID </label>
+			 <input type="text" name="id" class="form-control" placeholder="Enter Patient ID">
+        </div>
+      </div>
+    </div>
+	
+	
+    <div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Height</label>
+                      <input type="text" name="height" class="form-control" placeholder="Enter height">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Weight</label>
+                      <input type="text" name="weight" class="form-control" placeholder="Enter weight">
+        </div>
+      </div>
+    </div>
+	
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Body Mass Index</label>
+                      <input type="text" name="bmi" class="form-control" placeholder="Enter BMI">
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Blood Pressure</label>
+                      <input type="text" name="bp" class="form-control" placeholder="Enter blood pressure">
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Pulse Rate</label>
+                      <input type="text" name="pr" class="form-control" placeholder="Enter pulse rate">
+        </div>
+      </div>
+    </div>
+	
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Disease</label>
+                      <input type="text" name="disease" class="form-control" placeholder="Enter disease">
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Symptoms</label>
+                      <input type="text" name="symptoms" class="form-control" placeholder="Enter symptoms">
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Medicine</label>
+                      <input type="text" name="medicine" class="form-control" placeholder="Enter medicine(s)">
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Date Of Treatment</label>
+                      <p>Date: <input type="date" id="datepicker"></p>
+
+        </div>
+      </div>
+    </div>
+	
+
+									  
+	<button type="submit" class="btn btn-primary">Submit</button>
+	  
+	  
+</form>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
