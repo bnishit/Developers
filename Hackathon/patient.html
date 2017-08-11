@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patient Profile</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+h4 {
+	padding-left: 90px;
+}
+
+h5 {
+	padding-left: 40px;
+}
+
+p {
+	text-align="center";
+	padding-left:20px;
+}
+
+button {
+	float: left;
+    position: relative;
+    left: 40%;
+}
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+	
+  <div class="row">
+    <div class="col-sm-2 card" >
+	
+		</br>
+		</br>
+	
+		<div class="card-avatar">
+                                  <label for="file-input">
+                                      <img id="pic" class="img-circle" src="generic-profile.png" width="200" height=""/>
+                                  </label>
+                                  <input name="profile_pic" style="display: none" id="file-input" type="file"/> 
+                            </div>
+
+		
+		<div class="row">
+		<h5 text-align="center">Upload Profile Picture</h5>
+		</div>
+		<div class="row">
+		<h4 text-align="center">Name</h4>
+		</div>
+		</br>
+		
+		<div class="row">
+		<p>Complete Your Profile to help the Doctor know more about you</p>
+		</div>
+	</div>
+
+    <div class="col-sm-10 card" style="background-color:lavenderblush;">
+	<br>
+	<br>
+	<form action="/action_page">
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Name</label>
+                      <input type="text" name="spec" class="form-control" placeholder="Enter name" disabled>
+        </div>
+      </div>
+    </div>
+	
+	
+    <div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Address</label>
+                      <input type="text" name="addr" class="form-control" placeholder="Enter address">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">City</label>
+                      <input type="text" name="city" class="form-control" placeholder="Enter City">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+                                          <div class="col-sm-4">
+                        <div class="form-group label-floating">
+							<div class="form-group">
+							  <label for="blood group" class="control-label" style="font-size: 14px;">Select Blood Group:</label>
+							  <select name="batch" class="form-control" id="sel1">
+							    <option value="0">Choose...</option>
+							    <option value="1">A+</option>
+							    <option value="2">B+</option>
+								<option value="2">AB+</option>
+								<option value="2">O+</option>
+								<option value="2">A-</option>
+								<option value="2">B-</option>
+								<option value="2">AB-</option>
+								<option value="2">O-</option>
+							  </select>
+							</div>
+                        </div>
+                                          </div>
+                                      </div>
+	
+	<div class="row">
+                                          <div class="col-md-6">
+                        <div class="form-group label-floating">
+                          <label for="gender" class="control-label" style="font-size: 14px;">Gender</label><br>
+                          <label for="gender_male">
+                          <input  type="radio" id="gender_male" value="m" name="gender" disabled/>
+                          Male
+                        </label><br>
+                        <label for="gender_female">
+                          <input  type="radio" id="gender_female" value="f" name="gender" disabled/>
+                          Female
+                        </label><br>
+                        </div>
+                                          </div>                
+                                          <div class="col-md-3">
+                        <div class="form-group label-floating">
+                          <label class="control-label">Contact</label>
+                          <input name="contact" type="text" class="form-control" >
+                        </div>
+                                          </div>
+                                      </div>
+									  
+	<button type="submit" class="btn btn-primary">Update Profile</button>
+	
+	</div>
+  </div>
+
+</div>
+</body>
+</html>
