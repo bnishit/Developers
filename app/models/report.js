@@ -14,6 +14,7 @@ var reportSchema = mongoose.Schema({
 			Dose: Number 
 		}],
 	}]
+	Date: {type: Date, default: Date.now()},
 },{ collection: 'reports' })
 
 module.exports = mongoose.model('Patients', reportSchema);

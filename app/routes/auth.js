@@ -25,11 +25,34 @@ module.exports = function(router, passport,io){
   router.post('/login', function(req,res){
      if(req.body.otp){
         if(req.body.otp == OTP){
-               res.send('Adhar No.: '+req.body.uid+' Otp:'+ req.body.otp);
+           // Find if he is a doctor or patient
+           Doc.findOne({'uid': req.body.uid },function(err,user){
+               if(err){
+                 throw err;
+               }
+               if(user){
+                 // He is a doctor
+                 res.redirect('/dashboard_doc');
+               }
+               else{
+                   Pat.findOne({'uid': req.body.uid },function(err,user){
+                       if(err){
+                         throw err;
+                       }
+                       if(user){
+                         // He is a patient
+                         res.redirect('/dashboard_pat');
+                       }
+                   });
+               }
+           })
+              // res.send('Adhar No.: '+req.body.uid+' Otp:'+ req.body.otp);
         }else{
+            // The user with this aadhar does not exist
                res.send('dont make chutiya');
         }
      }else{
+        // This is just to send otp also works when req.body.otp is null
         console.log(req.body.phno);
         var client = require('twilio')(
           'ACc5a3228883866d4142e93f27f13fe7e2',

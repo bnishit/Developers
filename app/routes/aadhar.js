@@ -18,7 +18,7 @@ module.exports = function(router,passport,io){
 		    console.log(result);
 		    user = result.PrintLetterBarcodeData.$;
 		    console.log(user.loc);
-		    io.sockets.emit('doc_det',{'uid':user.uid,'nme': user.name,'add': user.loc,'cty': user.vtc,'gnd': user.gender});
+		    io.sockets.emit('doc_det',{'dob':user.dob,'uid':user.uid,'nme': user.name,'add': user.loc,'cty': user.vtc,'gnd': user.gender});
 		    
 	  	  } 
 	  }); 
