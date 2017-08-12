@@ -41,7 +41,7 @@ button {
 	
 		<div class="card-avatar">
                                   <label for="file-input">
-                                      <img id="pic" class="img-circle" src="generic-profile.png" width="200" height=""/>
+                                      <img id="pic" style="width: 167px;" class="img-circle" src="/prof_pic.png" height=""/>
                                   </label>
                                   <input name="profile_pic" style="display: none" id="file-input" type="file"/> 
                             </div>
@@ -63,13 +63,14 @@ button {
     <div class="col-sm-10 card" style="background-color:lavenderblush;">
 	<br>
 	<br>
+   <h3 style="margin-top: 0px;padding-bottom: 16px;">Scan your Aadhar Card to get the details filled up Automatically !!!</h3>
 	<form role="form" id="setup_stud_form" action="/auth/signup_doc" method="post">
 	
 	<div class="row">
      <div class="col-xs-4">
        <div class="form-group label-floating">
              <label class="control-label">Name</label>
-                      <input  id="u_name" name="username_doc" class="form-control" placeholder="Enter name">
+                      <input  id="name" name="usename" class="form-control" placeholder="Enter name">
         </div>
       </div>
     </div>
@@ -197,7 +198,8 @@ button {
 
           socket.on('doc_det',function(data){
              console.log(data);
-             $("#name").html(''+data.nme);
+             $("#name").html(''+data.nme)
+             $("#usename").val(data.nme);
              $('#a_id').val(data.uid);
              if($('#d_gnd_m').attr('value') == data.gnd){
                 $('#d_gnd_m').attr('checked',true);

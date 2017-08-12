@@ -4,6 +4,53 @@ var Rep = require('../models/report.js');
 
 module.exports = function(router,passport,io){
 var j=0;var i=0;
+
+    router.get('/req_blood',function(req,res){
+         res.render('ackg/acknowledgement.ejs');
+    });
+
+    router.post('/conv_to_pdf',function(req,res){
+    	console.log(req.body);
+
+                var pdf= require('pdfkit');
+                var fs= require('fs');
+
+                var myDoc =new pdf;
+                myDoc.pipe(fs.createWriteStream(__dirname+'report'+req.body.rid+'.pdf'));
+                myDoc.text('Doctor Id: '+req.body.doct_id+ 'Disease: '+req.body.dise+ 'Symptoms: '+req.body.symp+'Medicines: '+req.body.med, 100,100);
+                myDoc.font('Times-Roman')
+                myDoc.fontSize(48); 
+                myDoc.end(); 
+                var file = __dirname+'report'+req.body.rid+'.pdf';
+                res.download(file); // Set disposition and send it.     
+    });
+
+    router.get('/profile/:id',function(req,res){
+    	Doc.findOne({'uid': req.params.id},function(err,doc){
+    		if(err){
+    			throw err;
+    		}
+    		if(doc){
+    			// He is a Doctor
+    			res.render('profiles/doctor_profile.ejs',{'doctor': doc});
+    		}
+    		else{
+    			Pat.findOne({'uid': req.params.id},function(err,pat){
+    				if(err){
+    					throw err;
+    				}
+    				if(pat){
+                        // He is a patient
+                        res.render('patient_profile.ejs',{'patient': pat});
+
+    				}else{ 
+    					// He is neither doctor or patient
+    				}
+    			})
+    		}
+    	})
+    })
+
 	router.get('/dashboard/:id',function(req,res){
 		 if(j<1){
           io.on('connection',function(socket){
@@ -59,7 +106,7 @@ var j=0;var i=0;
                  	}else{
                  		for(i=0;i<report.length;i++)
                  		{
-                            io.sockets.emit('reports',{'Date': report[i].Date, 'p_id': report[i].patient_id,'d_id': report[i].doctor_id,'desc': report[i].Disease,'sym': report[i].symptoms,'med': report[i].Medicines });
+                            io.sockets.emit('reports',{'_id': report[i]._id, 'Date': report[i].Date, 'p_id': report[i].patient_id,'d_id': report[i].doctor_id,'desc': report[i].Disease,'sym': report[i].symptoms,'med': report[i].Medicines });
                  		}
                  	}
                  })
