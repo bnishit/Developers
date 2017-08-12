@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  span {
+	font-size: 200%
+  }
+  
+  </style>
+</head>
+<body>
+
+<div class="container">
+</br>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">HOME</a></li>
+    <li><a data-toggle="tab" href="#menu1">MEDICAL HISTORY</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h2>BIODATA</h2>
+	  </br>
+	  </br>
+      <span>Patient id: </span> <span id="p_id"></span>
+	  </br>
+	  <span>Weight: </span> <span id="w_id"></span>
+	  </br>
+	  <span>Height: </span> <span id="h_id"></span>
+	  </br>
+	  <span>BMI: </span> <span id="b_id"></span>
+	  </br>
+	  <span>Blood Pressure: </span> <span id="bp_id"></span>
+	  </br>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>MEDICAL HISTORY</h3>
+	  </br>
+      <div class="col-sm-4">
+	  <label for="course" class="control-label" style="font-size: 14px;">Search</label>
+							  <select name="search" class="form-control" id="sel1">
+							    <option value="0">Choose...</option>
+							    <option value="1">By Disease</option>
+							    <option value="2">By Year</option>
+
+							  </select>
+	  
+    </div>
+    </div>
+
+	  
+</div>
+</div>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+  <script src ="/account/assets/js/moment.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function(){
+            var socket = io();
+            socket.on('connect',function(){
+               console.log('connected');
+            });
+            socket.on('doc_details',function(data){
+               console.log(data);
+            });
+            socket.on('show_details',function(data){
+              console.log(data);
+                $("#p_id").html(data.uid);
+                $("#w_id").html(data.wght);
+                $("#h_id").html(data.hght);
+                $("#b_id").html(data.bmi);
+                $("#bp_id").html(data.bp);
+            });
+            socket.on('pat_details',function(data){
+               console.log(data);
+               
+            })
+        })
+  </script>
+</body>
+</html>

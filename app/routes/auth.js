@@ -1,5 +1,6 @@
 var Doc = require('../models/doctor.js');
 var Pat = require('../models/patient.js');
+var Rep = require('../models/report.js');
 var val = Math.floor(1000 + Math.random() * 9000);
 var OTP;
 
@@ -19,10 +20,12 @@ module.exports = function(router, passport,io){
   });
   
   router.get('/login', function(req, res){
+
       res.render('auth_files/login.ejs', { message: req.flash('loginMessage') });
   });
 
   router.post('/login', function(req,res){
+
      if(req.body.otp){
         if(req.body.otp == OTP){
            // Find if he is a doctor or patient
@@ -32,7 +35,7 @@ module.exports = function(router, passport,io){
                }
                if(user){
                  // He is a doctor
-                 res.redirect('/dashboard_doc');
+                 res.redirect('/dashboard/'+req.body.uid);
                }
                else{
                    Pat.findOne({'uid': req.body.uid },function(err,user){
@@ -41,7 +44,8 @@ module.exports = function(router, passport,io){
                        }
                        if(user){
                          // He is a patient
-                         res.redirect('/dashboard_pat');
+                         io.sockets.emit('show_pc_detail',{'user': user});
+                         res.redirect('/dashboard/'+req.body.uid);
                        }
                    });
                }
@@ -49,7 +53,7 @@ module.exports = function(router, passport,io){
               // res.send('Adhar No.: '+req.body.uid+' Otp:'+ req.body.otp);
         }else{
             // The user with this aadhar does not exist
-               res.send('dont make chutiya');
+               res.send('dont make fool');
         }
      }else{
         // This is just to send otp also works when req.body.otp is null

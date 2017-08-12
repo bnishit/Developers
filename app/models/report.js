@@ -2,19 +2,13 @@ var mongoose = require('mongoose');
 
 var reportSchema = mongoose.Schema({
 	patient_id: String,
-	Weight: Number,
-	Height: Number,
-	BMI: Number,
-	Blood_Pressure: Number,
-	Pulse_Rate: Number
+	Pulse_Rate: Number,
 	Disease: [{
+		name: String,
 		symptoms: String,
-		Medicines: [{
-			Name: String,
-			Dose: Number 
-		}],
-	}]
-	Date: {type: Date, default: Date.now()},
+		Medicines: String
+	}],
+	Date: {type: Date, default: Date.now()}
 },{ collection: 'reports' })
 
-module.exports = mongoose.model('Patients', reportSchema);
+module.exports = mongoose.model('Reports', reportSchema);
