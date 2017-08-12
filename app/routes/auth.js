@@ -25,7 +25,9 @@ module.exports = function(router, passport,io){
   });
 
   router.post('/login', function(req,res){
-
+     console.log(req.body.uid);
+     console.log(req.body.otp);
+     OTP = val;
      if(req.body.otp){
         if(req.body.otp == OTP){
            // Find if he is a doctor or patient
@@ -43,6 +45,9 @@ module.exports = function(router, passport,io){
                          throw err;
                        }
                        if(user){
+                        console.log(req.body.uid);
+                        console.log(OTP);
+                        console.log('reaching')
                          // He is a patient
                          io.sockets.emit('show_pc_detail',{'user': user});
                          res.redirect('/dashboard/'+req.body.uid);

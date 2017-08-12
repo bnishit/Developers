@@ -17,17 +17,17 @@ var j=0;var i=0;
                   	  if(user){
                   	  	 console.log(data.wght);
                   	  	     rep = new Rep();
-
+                  	  	     rep.doctor_id = data.did; 
+                             rep.patient_id = data.id;
                              user.Weight = data.wght;
                              user.Height = data.hght;
                              user.BMI = data.bmi;
                              user.Blood_Pressure = data.bp;
                              rep.Pulse_Rate= data.pulse;
-                             rep.Disease.push({
-                             	name: data.desc,
-                             	symptoms: data.sym,
-                             	Medicines: data.med
-                             });
+                             rep.Disease = data.desc;
+                             rep.symptoms = data.sympt;
+                             rep.Medicines = data.med;
+    
 
                              user.save(function(err){
                              	if(err){
@@ -52,10 +52,22 @@ var j=0;var i=0;
                   })
                   
               });
-
+              socket.on('get_history',function(data){
+                 Rep.find({'patient_id': data.id},function(err,report){
+                 	if(err){
+                 		throw err;
+                 	}else{
+                 		for(i=0;i<report.length;i++)
+                 		{
+                            io.sockets.emit('reports',{'Date': report[i].Date, 'p_id': report[i].patient_id,'d_id': report[i].doctor_id,'desc': report[i].Disease,'sym': report[i].symptoms,'med': report[i].Medicines });
+                 		}
+                 	}
+                 })
+              });
           });
            j = j+1;		 	
 		 }
+           
 
            Doc.findOne({'uid': req.params.id },function(err,user){
                if(err){
@@ -75,7 +87,7 @@ var j=0;var i=0;
                        if(user){
                        	console.log(user);
                          // He is a patient
-                         res.render('patient_view.ejs',{'id': req.params.id});
+                         res.render('patient_view.ejs',{'patient': user});
                          io.sockets.emit('pat_details',{'user': user});
                        }
                    });
